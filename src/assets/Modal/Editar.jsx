@@ -17,7 +17,7 @@ const Editar = (props) => {
         productDescription: props.product.productDescription
     })
     const [modalIsOpen, setIsOpen] = useState(false);
-
+    const [message, setMessage] = useState();
     function openModal() {
         setIsOpen(true)
     }
@@ -49,15 +49,15 @@ const Editar = (props) => {
         setProduct((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleRegister = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
         const registrar = async () => {
             try {
-                if(product.ProductName =!null && product.ProductCategory!=null && product.Price>0 && product.Stock>=0){
+                if(product.ProductName !==null && product.ProductCategory!==null && product.Price>0 && product.Stock>=0){
                     const result = await axios.put(`https://productcrud.azurewebsites.net/api/product/${product.ProductId}`,product)
                     if (result.data.success) setIsOpen(false)
                 }else{
-                    alert("Error al actualizar producto")
+                    setMessage("Campos inválidos...")
                 }
                 
             } catch (e) {
@@ -77,7 +77,8 @@ const Editar = (props) => {
                 onRequestClose={closeModal}
             >
                 <Button onClick={closeModal} style={{}}>X</Button>
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)} >Eliminar producto?</h2>
+                <p style={{color:"red",width: "100%", textAlign:"center"}}>{message}</p>
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)} >Actualizar producto?</h2>
                 <hr style={{ width: '100%', height: "2px" }}></hr>
                 <h5 style={{color: "white"}}> ProductId: {product.ProductId } </h5>
                 <Inputs className='inputs' >
@@ -91,7 +92,7 @@ const Editar = (props) => {
                     <input type="number" onChange={handleChange} value={product.Price} className="form-control" name="Price" placeholder="Precio" />
                 </Inputs>
                 <Form >
-                    <button className='btn btn-success' type='button' onClick={handleRegister}>Actualizar</button>
+                    <button className='btn btn-success' type='button' onClick={handleUpdate}>Actualizar</button>
                     <button className='btn btn-danger' onClick={closeModal}>Cancelar</button>
                 </Form>
             </Modal>

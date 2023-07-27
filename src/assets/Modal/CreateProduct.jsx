@@ -16,6 +16,8 @@ const CreateProduct = () => {
         productDescription:""
     })
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [message, setMessage] = useState();
+
     function openModal() {
         setIsOpen(true)
     }
@@ -50,11 +52,11 @@ const CreateProduct = () => {
         e.preventDefault();
         const registrar = async () => {
             try {
-                if(product.ProductName =!null && product.ProductCategory!=null && product.Price>0 && product.Stock>=0){
+                if(product.ProductName !==null && product.ProductCategory!==null && product.Price>0 && product.Stock>=0){
                     const result = await axios.post("https://productcrud.azurewebsites.net/api/product", product)
                     if(result.data.success) setIsOpen(false)
                 }else{
-                    alert("Error al crear el producto")
+                    setMessage("Campos inválidos...")
                 }
             } catch (e) {
                 console.log(e)
@@ -74,6 +76,7 @@ const CreateProduct = () => {
                 onRequestClose={closeModal}
             >
                 <Button onClick={closeModal} style={{}}>X</Button>
+                <p style={{color:"red",width: "100%", textAlign:"center"}}>{message}</p>
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)} >Crear producto</h2>
                 <hr style={{ width: '100%', height: "2px" }}></hr>
                 <Inputs className='inputs' >
