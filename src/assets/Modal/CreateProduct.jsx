@@ -50,12 +50,17 @@ const CreateProduct = () => {
         e.preventDefault();
         const registrar = async () => {
             try {
-                const result = await axios.post("https://productcrud.azurewebsites.net/api/product", product)
-                if(result.data.success) setIsOpen(false)
+                if(product.ProductName =!null && product.ProductCategory!=null && product.Price>0 && product.Stock>=0){
+                    const result = await axios.post("https://productcrud.azurewebsites.net/api/product", product)
+                    if(result.data.success) setIsOpen(false)
+                }else{
+                    alert("Error al crear el producto")
+                }
             } catch (e) {
                 console.log(e)
             }
         }
+
         registrar();
     }
 

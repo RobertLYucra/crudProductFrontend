@@ -53,8 +53,13 @@ const Editar = (props) => {
         e.preventDefault();
         const registrar = async () => {
             try {
-                const result = await axios.put(`https://productcrud.azurewebsites.net/api/product/${product.ProductId}`,product)
-                if (result.data.success) setIsOpen(false)
+                if(product.ProductName =!null && product.ProductCategory!=null && product.Price>0 && product.Stock>=0){
+                    const result = await axios.put(`https://productcrud.azurewebsites.net/api/product/${product.ProductId}`,product)
+                    if (result.data.success) setIsOpen(false)
+                }else{
+                    alert("Error al actualizar producto")
+                }
+                
             } catch (e) {
                 console.log(e)
             }
