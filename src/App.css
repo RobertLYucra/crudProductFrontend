@@ -1,0 +1,22 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+
+h2{
+  color:#046df6;
+}
+ion-icon{
+  border: none;
+  font-size: 1.5rem;
+}
+button{
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
