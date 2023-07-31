@@ -53,7 +53,7 @@ const CreateProduct = () => {
         const registrar = async () => {
             try {
                 if(product.ProductName !==null && product.ProductCategory!==null && product.Price>0 && product.Stock>=0){
-                    const result = await axios.post("https://productcrud.azurewebsites.net/api/product", product)
+                    const result = await axios.post("http://gestionproduct.somee.com/Product", product)
                     if(result.data.success) setIsOpen(false)
                 }else{
                     setMessage("Campos inválidos...")

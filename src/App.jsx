@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const productsFuntion = async () => {
-      const result = await axios.get("https://productcrud.azurewebsites.net/api/product")
+      const result = await axios.get("http://gestionproduct.somee.com/Product")
       setProducts(result.data.result)
     }
     productsFuntion()
