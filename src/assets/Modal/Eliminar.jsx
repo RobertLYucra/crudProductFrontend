@@ -39,7 +39,7 @@ const Eliminar = (props) => {
         e.preventDefault();
         const eliminar = async () => {
             try {
-                const result = await axios.delete(`http://gestionproduct.somee.com/Product/${productId}`)
+                const result = await axios.delete(`https://productcrudd.azurewebsites.net/product/${productId}`)
                 if(result.data.success) setIsOpen(false)
             } catch (e) {
                 console.log(e)

@@ -54,7 +54,7 @@ const Editar = (props) => {
         const registrar = async () => {
             try {
                 if(product.ProductName !==null && product.ProductCategory!==null && product.Price>0 && product.Stock>=0){
-                    const result = await axios.put(`http://gestionproduct.somee.com/Product/${product.ProductId}`,product)
+                    const result = await axios.put(`https://productcrudd.azurewebsites.net/product/${product.ProductId}`,product)
                     if (result.data.success) setIsOpen(false)
                 }else{
                     setMessage("Campos inválidos...")
